@@ -1,7 +1,6 @@
 package com.raisetech.task6;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,26 +8,22 @@ import java.time.format.DateTimeFormatter;
 @RestController
 public class HelloWorldController {
 
-    @RequestMapping("/greetings")
-    public String example (){
+    @RequestMapping("")
+    public String example() {
         LocalDateTime nowDateTime = LocalDateTime.now();
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
         String dateTimeJp = format.format(nowDateTime);
         return "japan,usa,britainの挨拶。日本の時刻：" + dateTimeJp;
     }
 
-    @RequestMapping(value = "/greetings", params = "country=japan")
-    public String Japanese(){
-        return "おはようございます";
+    @GetMapping("/greetings")
+    public String japanese(@RequestParam(name = "japan", value = "japan", required = true)String country){
+        return "おはよう御座います";
     }
-
-    @RequestMapping(value = "/greetings", params = "country=usa")
-    public String English(){
+    public String English(@RequestParam(name = "usa", value = "usa", required = true) String country) {
         return "GoodMorning";
     }
-
-    @RequestMapping(value = "/greetings", params = "country=britain")
-    public String Britain(){
+    public String British(@RequestParam(name = "Britain", value = "Britain", required = true) String country) {
         return "Cheers";
     }
 }
