@@ -17,7 +17,7 @@ public class HelloWorldController {
     }
 
     @GetMapping("/greetings")
-    public String japanese(@RequestParam(value = "country", required = false) String country) {
+    public String japanese(@RequestParam(value = "country") String country) {
 
         String japan = "japan";
         String usa = "usa";
