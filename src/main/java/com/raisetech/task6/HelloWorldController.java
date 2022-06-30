@@ -17,13 +17,18 @@ public class HelloWorldController {
     }
 
     @GetMapping("/greetings")
-    public String japanese(@RequestParam(name = "japan", value = "japan", required = true)String country){
-        return "おはよう御座います";
-    }
-    public String English(@RequestParam(name = "usa", value = "usa", required = true) String country) {
-        return "GoodMorning";
-    }
-    public String British(@RequestParam(name = "Britain", value = "Britain", required = true) String country) {
-        return "Cheers";
+    public String japanese(@RequestParam(value = "country", required = false) String country) {
+
+        String japan = "japan";
+        String usa = "usa";
+        String britain = "britain";
+
+        if (country.equals(japan)) {
+            return "おはよう御座います。";
+        } else if (country.equals(usa)) {
+            return "GoodMorning";
+        } else if (country.equals(britain)) {
+            return "Cheers";
+        } else return "どの国の挨拶ですか？（　japan , usa , britain )";
     }
 }
