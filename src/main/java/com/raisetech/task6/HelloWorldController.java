@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 @RestController
 public class HelloWorldController {
 
-    @RequestMapping("")
+    @GetMapping("/")
     public String example() {
         LocalDateTime nowDateTime = LocalDateTime.now();
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
@@ -17,17 +17,13 @@ public class HelloWorldController {
     }
 
     @GetMapping("/greetings")
-    public String japanese(@RequestParam(value = "country") String country) {
-
-        String japan = "japan";
-        String usa = "usa";
-        String britain = "britain";
-
-        if (country.equals(japan)) {
+    public String greeting(@RequestParam(value = "country") String country) {
+        
+        if (country.equals("japan")) {
             return "おはよう御座います。";
-        } else if (country.equals(usa)) {
+        } else if (country.equals("usa")) {
             return "GoodMorning";
-        } else if (country.equals(britain)) {
+        } else if (country.equals("britain")) {
             return "Cheers";
         } else return "どの国の挨拶ですか？（　japan , usa , britain )";
     }
